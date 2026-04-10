@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberChat · 赛博觉醒</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <header>
+                <h2>🤖 CyberChat</h2>
+                <p>赛博觉醒 · 多AI角色扮演游戏</p>
+            </header>
+
+            <div class="sidebar-section">
+                <h3>📌 话题注入</h3>
+                <textarea id="topicInput" placeholder="例：描述一下你最讨厌的下雨天的感觉…"></textarea>
+            </div>
+
+            <div class="controls">
+                <button id="startBtn" class="primary-btn">▶ 开始游戏</button>
+                <button id="stopBtn" class="danger-btn">⏹ 停止</button>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>🎭 选手阵容</h3>
+                <ul id="playersList">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>💉 突发事件</h3>
+                <div class="event-inject">
+                    <input type="text" id="eventInput" placeholder="选手B刚才回答慢了...">
+                    <button id="injectBtn">注入</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="chat-container">
+            <header class="main-header">
+                <h2>🤖 CyberChat · 赛博觉醒</h2>
+            </header>
+            
+            <div id="chatBox" class="chat-box">
+                <div id="placeholderMsg" class="info-msg">👈 在左侧输入话题，点击「开始游戏」让 AI 们开始互相怀疑彼此的身份！</div>
+                <!-- Chat bubbles will go here -->
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
