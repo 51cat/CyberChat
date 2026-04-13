@@ -98,24 +98,18 @@ class GameRunner:
                     time.sleep(0.5)
                     broadcast("message_end", {"speaker": "裁判", "role": "god", "clean_text": god_notice})
                     GameState.add_message("裁判", god_notice, role="god")
-                    speaker_input = god_notice
                 else:
                     speaker = orch.current_speaker()
-                    if not GameState.shared_history:
-                        speaker_input = ""
-                    else:
-                        speaker_input = GameState.shared_history[-1].content
                 
                 broadcast("message_start", {"speaker": speaker.name, "role": "player"})
                 
                 full_text = ""
-                # Call LangChain stream_response
-                for token in speaker.stream_response(GameState.shared_history, speaker_input):
+                # 使用滑动窗口的对话历史 + 所有选手名字
+                recent_history = GameState.get_recent_history()
+                for token in speaker.stream_response(recent_history, orch._player_names):
                     if not self.running:
                         break
                     full_text += token
-                    # 取消流式推送，前端等待全部获取
-                    # broadcast("token", {"token": token})
 
                 if not self.running:
                     break
